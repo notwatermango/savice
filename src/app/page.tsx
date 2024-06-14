@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "~/components/ui/button";
+
 export default function HomePage() {
   return (
     <main className="p-6">
@@ -5,6 +8,9 @@ export default function HomePage() {
         Marioooooooooooooooooooooooooooooooooooooooooooooooooo
       </h1>
       <p>Welcome to the home page</p>
+      <Link href="/tools">
+        <Button>Go to the tools page</Button>
+      </Link>
     </main>
   );
 }

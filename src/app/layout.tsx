@@ -25,7 +25,11 @@ export default function RootLayout({
           // enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div vaul-drawer-wrapper="">
+            <div className="bg-background relative flex min-h-screen flex-col">
+              {children}
+            </div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
