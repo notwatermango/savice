@@ -73,7 +73,7 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
           name="chatData"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Chat data</FormLabel>
+              {/* <FormLabel>Chat data</FormLabel> */}
               <FormControl>
                 <Textarea
                   placeholder="Paste any text format here"

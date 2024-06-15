@@ -58,7 +58,7 @@ export async function summary(chat: string, lang: string) {
   }
   Your output will be validated by the system, so don't add any extra text
 
-  Your response should be in the language: ${lang}
+  Your response should be translated to the language: ${lang}
   Summarize the following chat data:
   ${chat}
   `;
