@@ -22,11 +22,11 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="theme-custom"
           forcedTheme="theme-custom"
-          // enableSystem
+          enableSystem
           disableTransitionOnChange
         >
           <div vaul-drawer-wrapper="">
-            <div className="bg-background relative flex min-h-screen flex-col">
+            <div className="relative flex min-h-screen flex-col bg-background">
               {children}
             </div>
           </div>
