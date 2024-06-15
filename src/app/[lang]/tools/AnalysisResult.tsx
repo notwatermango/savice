@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { toast } from "~/components/ui/use-toast";
+import Image from "next/image";
 
 interface AnalysisResultProps {
   data: AllData;
@@ -50,7 +51,15 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
           <CardHeader>
             <CardTitle>Sentiment</CardTitle>
           </CardHeader>
-          <CardContent>Sentiment: {allData.sentiment}</CardContent>
+          <CardContent>
+            <div className="flex flex-row gap-x-8 justify-center">
+              <Image src="https://i.ibb.co.com/4N8rDrk/sent1.png" alt="sent1" width="64" height="64"/>
+              <Image src="https://i.ibb.co.com/yPzBDWG/sent2.png" alt="sent1" width="64" height="64"/>
+              <Image src="https://i.ibb.co.com/QmQhYzp/sent3.png" alt="sent1" width="64" height="64"/>
+              <Image src="https://i.ibb.co.com/X4XKvgy/sent4.png" alt="sent1" width="64" height="64"/>
+              <Image src="https://i.ibb.co.com/tp6gFwd/sent5.png" alt="sent1" width="64" height="64"/>
+            </div>
+          </CardContent>
         </Card>
       )}
       {allData.summary && (
