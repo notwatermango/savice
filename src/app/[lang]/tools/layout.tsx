@@ -2,7 +2,6 @@
 
 import "~/styles/globals.css";
 
-import ToolsNav from "./ToolsNav";
 import TopBar from "./TopBar";
 
 const toolsNavItems = {
@@ -21,11 +20,8 @@ export default function Layout({
 }) {
   return (
     <>
-      <TopBar lang={lang} />
-      <main className="container relative z-20 mx-auto pt-2">
-        <ToolsNav items={toolsNavItems.items} />
-        {children}
-      </main>
+      <TopBar lang={lang} items={toolsNavItems.items} />
+      <main className="container relative z-20 mx-auto pt-2">{children}</main>
     </>
   );
 }

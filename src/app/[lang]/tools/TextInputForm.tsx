@@ -19,18 +19,14 @@ import { Checkbox } from "~/components/ui/checkbox";
 import { useState } from "react";
 
 const FormSchema = z.object({
-  chatData: z
-    .string()
-    .min(10, {
-      message: "Chat data must be at least 10 characters.",
-    })
-    .max(160, {
-      message: "Chat data must not be longer than 500 characters.",
-    }),
+  chatData: z.string().min(1, {
+    message: "Paste chat data here",
+  }),
   options: z.object({
-    includeSentimentAnalysis: z.boolean().default(false).optional(),
-    includeReplySuggestion: z.boolean().default(false).optional(),
-    includeTextSummarization: z.boolean().default(false).optional(),
+    includeTranslation: z.boolean().default(true),
+    includeSentimentAnalysis: z.boolean().default(false),
+    includeReplySuggestion: z.boolean().default(false),
+    includeTextSummarization: z.boolean().default(false),
   }),
 });
 
@@ -44,6 +40,7 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
     defaultValues: {
       chatData: "",
       options: {
+        includeTranslation: true,
         includeSentimentAnalysis: false,
         includeReplySuggestion: false,
         includeTextSummarization: false,
@@ -56,6 +53,7 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
     if (
+      !data.options.includeTranslation &&
       !data.options.includeSentimentAnalysis &&
       !data.options.includeReplySuggestion &&
       !data.options.includeTextSummarization
@@ -96,6 +94,26 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                 <FormLabel className={errorMessage ? "text-destructive" : ""}>
                   Options
                 </FormLabel>
+                <FormField
+                  control={form.control}
+                  name="options.includeTranslation"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>Include translation</FormLabel>
+                        <FormDescription>
+                          Translate the chat data into another language.
+                        </FormDescription>
+                      </div>
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="options.includeSentimentAnalysis"
