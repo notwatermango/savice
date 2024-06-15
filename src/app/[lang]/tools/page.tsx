@@ -32,31 +32,7 @@ export default function Page({
 }: {
   params: { lang: string };
 }) {
-  const [analysis, setAnalysis] = useState<AllData | null>({
-    translatedText:
-      "Saudara, tolong bantu saya, komputer saya tidak bisa menyala sejak minggu lalu, apakah kamu tahu cara memperbaikinya? Apakah kamu memiliki garansi? Apakah bisa diperbaiki secara gratis?",
-    originLanguage: "zh",
-    replyJson: {
-      targetLanguageReply: {
-        informativeReply:
-          "Untuk membantu Anda lebih lanjut, bisakah Anda memberikan informasi lebih lanjut tentang masalah yang Anda alami dengan komputer Anda? Selain itu, harap konfirmasi apakah komputer Anda masih dalam masa garansi.",
-        affirmingReply:
-          "Ya, jika komputer Anda masih dalam masa garansi, kami akan memberikan perbaikan gratis.",
-        denyingReply:
-          "Maaf, jika komputer Anda sudah tidak dalam masa garansi, kami tidak dapat menawarkan perbaikan gratis.",
-      },
-      originLanguageReply: {
-        informativeReply:
-          "為了進一步幫助您，您能否提供更多有關您的電腦問題的信息？此外，請確認您的電腦是否仍在保修期內。",
-        affirmingReply:
-          "是的，如果您的電腦仍在保修期內，我們將免費提供維修服務。",
-        denyingReply: "抱歉，如果您的電腦已超出保修期，我們無法提供免費維修。",
-      },
-    },
-    type: "json",
-    sentiment: 3,
-    summary: ["用戶的電腦無法開機", "用戶詢問是否有保固及免費修復"],
-  });
+  const [analysis, setAnalysis] = useState<AllData | null>(null);
 
   const [loading, setLoading] = useState(false);
 
