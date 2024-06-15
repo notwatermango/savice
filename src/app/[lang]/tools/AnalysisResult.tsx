@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Dot } from "lucide-react";
+import { toast } from "~/components/ui/use-toast";
 
 interface AnalysisResultProps {
   data: AllData;
@@ -30,7 +30,18 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
           <CardHeader>
             <CardTitle>Translation</CardTitle>
           </CardHeader>
-          <CardContent>{allData.translatedText}</CardContent>
+          <CardContent
+            className="cursor-pointer hover:text-gray-300 active:text-gray-400"
+            onClick={async () => {
+              await navigator.clipboard.writeText(allData.translatedText!);
+              toast({
+                title: "Copied to clipboard",
+                duration: 1000,
+              });
+            }}
+          >
+            {allData.translatedText}
+          </CardContent>
         </Card>
       )}
       {allData.sentiment && (
@@ -70,26 +81,92 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
                 <div className="basis-1/2 text-gray-400">Translated</div>
               </div>
               <div className="flex w-full flex-row">
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.originLanguageReply.informativeReply}
                 </div>
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.targetLanguageReply.informativeReply}
                 </div>
               </div>
               <div className="flex w-full flex-row">
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.originLanguageReply.affirmingReply}
                 </div>
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.targetLanguageReply.affirmingReply}
                 </div>
               </div>
               <div className="flex w-full flex-row">
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.originLanguageReply.denyingReply}
                 </div>
-                <div className="basis-1/2">
+                <div
+                  className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      allData.replyJson!.originLanguageReply.informativeReply,
+                    );
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 1000,
+                    });
+                  }}
+                >
                   {allData.replyJson.targetLanguageReply.denyingReply}
                 </div>
               </div>
