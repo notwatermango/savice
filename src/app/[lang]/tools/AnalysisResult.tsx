@@ -47,11 +47,11 @@ export default function AnalysisResult({ data, t }: AnalysisResultProps) {
           </CardHeader>
           <CardContent>
             <div className="flex flex-row gap-x-8 justify-center">
-              <Image src="https://i.ibb.co.com/4N8rDrk/sent1.png" alt="sent1" width="64" height="64"/>
-              <Image src="https://i.ibb.co.com/yPzBDWG/sent2.png" alt="sent1" width="64" height="64"/>
-              <Image src="https://i.ibb.co.com/QmQhYzp/sent3.png" alt="sent1" width="64" height="64"/>
-              <Image src="https://i.ibb.co.com/X4XKvgy/sent4.png" alt="sent1" width="64" height="64"/>
-              <Image src="https://i.ibb.co.com/tp6gFwd/sent5.png" alt="sent1" width="64" height="64"/>
+              <Image src="https://i.ibb.co.com/4N8rDrk/sent1.png" alt="sent1" width="64" height="64" className={allData.sentiment === 1? "" : "opacity-10"}/>
+              <Image src="https://i.ibb.co.com/yPzBDWG/sent2.png" alt="sent1" width="64" height="64" className={allData.sentiment === 2? "" : "opacity-10"}/>
+              <Image src="https://i.ibb.co.com/QmQhYzp/sent3.png" alt="sent1" width="64" height="64" className={allData.sentiment === 3? "" : "opacity-10"}/>
+              <Image src="https://i.ibb.co.com/X4XKvgy/sent4.png" alt="sent1" width="64" height="64" className={allData.sentiment === 4? "" : "opacity-10"}/>
+              <Image src="https://i.ibb.co.com/tp6gFwd/sent5.png" alt="sent1" width="64" height="64" className={allData.sentiment === 5? "" : "opacity-10"}/>
             </div>
           </CardContent>
         </Card>
