@@ -32,9 +32,10 @@ const FormSchema = z.object({
 
 interface InputDataFormProps {
   handleSubmit: (data: z.infer<typeof FormSchema>) => void;
+  t: (key: string) => string;
 }
 
-export function InputDataForm({ handleSubmit }: InputDataFormProps) {
+export function InputDataForm({ handleSubmit, t }: InputDataFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -76,7 +77,7 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
               {/* <FormLabel>Chat data</FormLabel> */}
               <FormControl>
                 <Textarea
-                  placeholder="Paste any text format here"
+                  placeholder={t("text-placeholder")}
                   className="h-96 resize-y"
                   {...field}
                 />
@@ -92,7 +93,7 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
             render={({}) => (
               <FormItem>
                 <FormLabel className={errorMessage ? "text-destructive" : ""}>
-                  Options
+                  {t("options")}
                 </FormLabel>
                 <FormField
                   control={form.control}
@@ -106,9 +107,9 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>Include translation</FormLabel>
+                        <FormLabel>{t("translation")}</FormLabel>
                         <FormDescription>
-                          Translate the chat data into another language.
+                          {t("translation-detail")}
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -126,9 +127,9 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>Include sentiment analysis</FormLabel>
+                        <FormLabel>{t("sentiment")}</FormLabel>
                         <FormDescription>
-                          Analyze the sentiment of the chat data.
+                          {t("sentiment-detail")}
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -146,9 +147,9 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>Include reply suggestion</FormLabel>
+                        <FormLabel>{t("suggestion")}</FormLabel>
                         <FormDescription>
-                          Generate reply suggestions based on the chat data.
+                          {t("suggestion-detail")}
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -166,9 +167,9 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>Include text summarization</FormLabel>
+                        <FormLabel>{t("summarize")}</FormLabel>
                         <FormDescription>
-                          Summarize the chat data into a shorter version.
+                          {t("summarize-detail")}
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -181,11 +182,8 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
             )}
           />
         </div>
-        <FormDescription>
-          Please provide the chat data and select the options you want to
-          include in the analysis.
-        </FormDescription>
-        <Button type="submit">Submit</Button>
+        <FormDescription>{t("instruction")}</FormDescription>
+        <Button type="submit">{t("submit")}</Button>
       </form>
     </Form>
   );

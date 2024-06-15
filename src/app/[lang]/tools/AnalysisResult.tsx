@@ -1,21 +1,15 @@
 import { useEffect } from "react";
 import { type AllData } from "./page";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { toast } from "~/components/ui/use-toast";
 import Image from "next/image";
 
 interface AnalysisResultProps {
   data: AllData;
+  t: (key: string) => string;
 }
 
-export default function AnalysisResult({ data }: AnalysisResultProps) {
+export default function AnalysisResult({ data, t }: AnalysisResultProps) {
   useEffect(() => {
     console.log(data);
   }, [data]);
@@ -23,13 +17,13 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
   return (
     <div className="mt-12 flex flex-col gap-2 lg:mt-0">
       <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-        Output
+        {t("output")}
       </h3>
       {allData.originLanguage && (
         // translation is ON
         <Card>
           <CardHeader>
-            <CardTitle>Translation</CardTitle>
+            <CardTitle>{t("otranslation")}</CardTitle>
           </CardHeader>
           <CardContent
             className="cursor-pointer hover:text-gray-300 active:text-gray-400"
@@ -49,7 +43,7 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
         // sentiment analysis is ON
         <Card>
           <CardHeader>
-            <CardTitle>Sentiment</CardTitle>
+            <CardTitle>{t("osentiment")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-row gap-x-8 justify-center">
@@ -66,7 +60,7 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
         // text summarization is ON
         <Card>
           <CardHeader>
-            <CardTitle>Summary</CardTitle>
+            <CardTitle>{t("osummary")}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="ms-4 list-outside list-disc">
@@ -87,7 +81,7 @@ export default function AnalysisResult({ data }: AnalysisResultProps) {
             <div className="flex flex-col gap-2">
               <div className="flex w-full flex-row">
                 <div className="basis-1/2 text-gray-400">Original</div>
-                <div className="basis-1/2 text-gray-400">Translated</div>
+                <div className="basis-1/2 text-gray-400">{t("translated")}</div>
               </div>
               <div className="flex w-full flex-row">
                 <div

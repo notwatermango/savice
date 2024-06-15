@@ -59,7 +59,7 @@ export default function Page({
 
   const handleSubmit = async (data: ChatPromptData) => {
     console.log(data);
-    const allData = await prompt(data);
+    const allData = await prompt(data, lang);
     console.log(allData);
     setAnalysis(allData.data);
   };
@@ -70,9 +70,9 @@ export default function Page({
     <div className="flex flex-col gap-x-6 py-2 lg:grid lg:grid-cols-2">
       <div className="flex-1 lg:col-span-1">
         <h3 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
-          Input
+          {t("input")}
         </h3>
-        <InputDataForm handleSubmit={handleSubmit} />
+        <InputDataForm handleSubmit={handleSubmit} t={t} />
       </div>
       <div className="flex-1 flex-row text-wrap lg:col-span-1">
         {!analysis && (
@@ -80,7 +80,7 @@ export default function Page({
             {t("noAnalysis")}
           </div>
         )}
-        {analysis && <AnalysisResult data={analysis} />}
+        {analysis && <AnalysisResult data={analysis} t={t} />}
       </div>
     </div>
   );
