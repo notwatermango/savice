@@ -83,7 +83,7 @@ export default function AnalysisResult({ data, t }: AnalysisResultProps) {
                 <div className="basis-1/2 text-gray-400">Original</div>
                 <div className="basis-1/2 text-gray-400">{t("translated")}</div>
               </div>
-              <div className="flex w-full flex-row">
+              <div className="flex w-full flex-row gap-2">
                 <div
                   className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
                   onClick={async () => {
@@ -113,7 +113,7 @@ export default function AnalysisResult({ data, t }: AnalysisResultProps) {
                   {allData.replyJson.targetLanguageReply.informativeReply}
                 </div>
               </div>
-              <div className="flex w-full flex-row">
+              <div className="flex w-full flex-row gap-2">
                 <div
                   className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
                   onClick={async () => {
@@ -143,7 +143,7 @@ export default function AnalysisResult({ data, t }: AnalysisResultProps) {
                   {allData.replyJson.targetLanguageReply.affirmingReply}
                 </div>
               </div>
-              <div className="flex w-full flex-row">
+              <div className="flex w-full flex-row gap-2">
                 <div
                   className="basis-1/2 cursor-pointer hover:text-gray-300 active:text-gray-400"
                   onClick={async () => {
