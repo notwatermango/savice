@@ -1,6 +1,5 @@
 "use client";
 
-import { type NextPage } from "next";
 import { InputDataForm } from "./TextInputForm";
 import { useState } from "react";
 import { useTranslation } from "~/app/i18n/client";
@@ -15,8 +14,6 @@ export default function Page({
     console.log(data);
     setAnalysis(data.chatData);
   };
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-nocheck
   const { t } = useTranslation(lang, "tools", {});
 
   return (
@@ -24,10 +21,7 @@ export default function Page({
       <div className="flex-1">
         <InputDataForm handleSubmit={handleSubmit} />
       </div>
-      <div className="flex-1">
-        <div>hi this is the analysis {analysis}</div>
-        {t("title")}
-      </div>
+      <div className="flex-1 flex-row">{t("title")}</div>
     </div>
   );
 }

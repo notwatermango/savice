@@ -18,10 +18,8 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "~/components/ui/form";
 import {
@@ -30,7 +28,6 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { useRouter, usePathname } from "next/navigation";
-import { useTranslation } from "~/app/i18n/client";
 
 const FormSchema = z.object({
   language: z.string({

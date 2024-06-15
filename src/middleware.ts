@@ -13,9 +13,8 @@ export const config = {
 
 export function middleware(req: NextRequest) {
   let lang;
-  console.log(req.cookies.get(cookieName));
   if (req.cookies.has(cookieName))
-    lang = acceptLanguage.get(req.cookies.get(cookieName).value);
+    lang = acceptLanguage.get(req.cookies.get(cookieName)?.value);
   if (!lang) lang = acceptLanguage.get(req.headers.get("Accept-Language"));
   if (!lang) lang = fallbackLng;
 
@@ -30,7 +29,7 @@ export function middleware(req: NextRequest) {
   }
 
   if (req.headers.has("referer")) {
-    const refererUrl = new URL(req.headers.get("referer"));
+    const refererUrl = new URL(req.headers.get("referer") ?? "");
     const lngInReferer = languages.find((l) =>
       refererUrl.pathname.startsWith(`/${l}`),
     );
