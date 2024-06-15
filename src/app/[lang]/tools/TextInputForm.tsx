@@ -33,9 +33,14 @@ const FormSchema = z.object({
 interface InputDataFormProps {
   handleSubmit: (data: z.infer<typeof FormSchema>) => void;
   t: (key: string) => string;
+  loading: boolean;
 }
 
-export function InputDataForm({ handleSubmit, t }: InputDataFormProps) {
+export function InputDataForm({
+  handleSubmit,
+  t,
+  loading,
+}: InputDataFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -183,7 +188,9 @@ export function InputDataForm({ handleSubmit, t }: InputDataFormProps) {
           />
         </div>
         <FormDescription>{t("instruction")}</FormDescription>
-        <Button type="submit">{t("submit")}</Button>
+        <Button type="submit" disabled={loading}>
+          {t("submit")}
+        </Button>
       </form>
     </Form>
   );

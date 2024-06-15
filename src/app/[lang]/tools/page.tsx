@@ -6,6 +6,7 @@ import { useTranslation } from "~/app/i18n/client";
 import { prompt } from "./actions";
 import { type ChatPromptData } from "./type";
 import AnalysisResult from "./AnalysisResult";
+import { Loader2 } from "lucide-react";
 export interface AllData {
   translatedText?: string;
   originLanguage?: string;
@@ -57,9 +58,13 @@ export default function Page({
     summary: ["用戶的電腦無法開機", "用戶詢問是否有保固及免費修復"],
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (data: ChatPromptData) => {
-    console.log(data);
+    setLoading(true);
+    setAnalysis(null);
     const allData = await prompt(data, lang);
+    setLoading(false);
     console.log(allData);
     setAnalysis(allData.data);
   };
@@ -72,12 +77,17 @@ export default function Page({
         <h3 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
           {t("input")}
         </h3>
-        <InputDataForm handleSubmit={handleSubmit} t={t} />
+        <InputDataForm handleSubmit={handleSubmit} t={t} loading={loading} />
       </div>
       <div className="flex-1 flex-row text-wrap lg:col-span-1">
-        {!analysis && (
+        {!analysis && !loading && (
           <div className="flex h-full w-full items-center justify-center text-center text-gray-700">
             {t("noAnalysis")}
+          </div>
+        )}
+        {loading && (
+          <div className="flex h-full w-full items-center justify-center text-center text-gray-700">
+            Loading <Loader2 className="ml-2 h-6 w-6 animate-spin" />
           </div>
         )}
         {analysis && <AnalysisResult data={analysis} t={t} />}
