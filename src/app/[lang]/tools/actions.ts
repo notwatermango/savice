@@ -10,12 +10,7 @@ import { env } from "~/env";
 import { type Chat, type ChatPromptData } from "./type";
 import extract from "extract-json-from-string";
 
-import { OpenAI } from "@langchain/openai";
-import { RunnableSequence } from "@langchain/core/runnables";
-import { StructuredOutputParser } from "langchain/output_parsers";
-import { PromptTemplate } from "@langchain/core/prompts";
-
-export async function prompt(data: ChatPromptData) {
+export async function prompt(data: ChatPromptData, lang: string) {
   const { chatData, options } = data;
   const {
     includeTranslation,
@@ -24,17 +19,17 @@ export async function prompt(data: ChatPromptData) {
     includeTextSummarization,
   } = options;
 
-  const translateResponse = await translate(chatData, "id");
+  const translateResponse = await translate(chatData, lang);
   console.log(translateResponse.originLanguage);
-  const summaryResponse = await summary(chatData, "id");
+  const summaryResponse = await summary(chatData, lang);
   console.log(summaryResponse.summary);
-  const sentimentResponse = await sentimentAnalysis(chatData, "id");
+  const sentimentResponse = await sentimentAnalysis(chatData, lang);
   console.log(sentimentResponse.sentiment);
   const recommendationResponse = await recommendation(
     data,
     summaryResponse.summary,
     translateResponse.originLanguage,
-    "id",
+    lang,
   );
   console.log(recommendationResponse.replyJson);
 
