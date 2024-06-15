@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
+import Image from "next/image";
 
 export default function HomePage({
   params: { lang },
@@ -12,6 +13,7 @@ export default function HomePage({
         Marioooooooooooooooooooooooooooooooooooooooooooooooooo
       </h1>
       <p>Welcome to the home page</p>
+      <Image src="https://i.ibb.co.com/4N8rDrk/sent1.png" alt="logo" width={24} height={24}/>
       <Link href={`/${lang}/tools`}>
         <Button>Go to the tools page</Button>
       </Link>
