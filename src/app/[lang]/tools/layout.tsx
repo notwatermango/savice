@@ -12,10 +12,16 @@ const toolsNavItems = {
   ],
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+  params: { lang },
+}: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
   return (
     <>
-      <TopBar />
+      <TopBar lang={lang} />
       <main className="container relative z-20 mx-auto pt-2">
         <ToolsNav items={toolsNavItems.items} />
         {children}

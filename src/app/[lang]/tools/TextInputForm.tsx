@@ -16,7 +16,7 @@ import {
 } from "~/components/ui/form";
 import { Textarea } from "~/components/ui/textarea";
 import { Checkbox } from "~/components/ui/checkbox";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const FormSchema = z.object({
   chatData: z
@@ -27,27 +27,11 @@ const FormSchema = z.object({
     .max(160, {
       message: "Chat data must not be longer than 500 characters.",
     }),
-  options: z
-    .object({
-      includeSentimentAnalysis: z.boolean().default(false).optional(),
-      includeReplySuggestion: z.boolean().default(false).optional(),
-      includeTextSummarization: z.boolean().default(false).optional(),
-    })
-    .refine(
-      (data) => {
-        if (
-          !data?.includeSentimentAnalysis &&
-          !data?.includeReplySuggestion &&
-          !data?.includeTextSummarization
-        ) {
-          return false;
-        }
-        return true;
-      },
-      {
-        message: "Please select at least one option.",
-      },
-    ),
+  options: z.object({
+    includeSentimentAnalysis: z.boolean().default(false).optional(),
+    includeReplySuggestion: z.boolean().default(false).optional(),
+    includeTextSummarization: z.boolean().default(false).optional(),
+  }),
 });
 
 interface InputDataFormProps {
@@ -67,19 +51,19 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
     },
   });
 
-  useEffect(() => {
-    const result = FormSchema.safeParse({
-      chatData: "wowwwwww123123123",
-      options: {
-        includeSentimentAnalysis: false,
-        includeReplySuggestion: false,
-        includeTextSummarization: false,
-      },
-    });
-    !result.success && console.log(result.error.issues);
-  }, [form.formState.errors]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
+    if (
+      !data.options.includeSentimentAnalysis &&
+      !data.options.includeReplySuggestion &&
+      !data.options.includeTextSummarization
+    ) {
+      setErrorMessage("Please select at least one option.");
+      return;
+    }
+    setErrorMessage("");
     handleSubmit(data);
   }
 
@@ -107,9 +91,11 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
           <FormField
             control={form.control}
             name="options"
-            render={({ field }) => (
+            render={({}) => (
               <FormItem>
-                <FormLabel>Options</FormLabel>
+                <FormLabel className={errorMessage ? "text-destructive" : ""}>
+                  Options
+                </FormLabel>
                 <FormField
                   control={form.control}
                   name="options.includeSentimentAnalysis"
@@ -170,7 +156,9 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
                     </FormItem>
                   )}
                 />
-                <FormMessage />
+                {errorMessage && (
+                  <div className="text-destructive">{errorMessage}</div>
+                )}
               </FormItem>
             )}
           />
@@ -179,7 +167,6 @@ export function InputDataForm({ handleSubmit }: InputDataFormProps) {
           Please provide the chat data and select the options you want to
           include in the analysis.
         </FormDescription>
-
         <Button type="submit">Submit</Button>
       </form>
     </Form>

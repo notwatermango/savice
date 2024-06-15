@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { siteConfig } from "~/config/site";
 import { ThemeProvider } from "~/components/theme-provider";
+import { dir } from "i18next";
 
 export const metadata = {
   title: siteConfig.name,
@@ -10,13 +11,23 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+const languages = ["en", "de"];
+
+export async function generateStaticParams() {
+  return languages.map((lang) => ({ lang }));
+}
+
 export default function RootLayout({
   children,
+  params: { lang },
 }: {
   children: React.ReactNode;
+  params: {
+    lang: string;
+  };
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html dir={dir(lang)} lang={lang} className={`${GeistSans.variable}`}>
       <body>
         <ThemeProvider
           attribute="class"
