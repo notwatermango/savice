@@ -10,6 +10,7 @@ export const metadata = {
   description: siteConfig.description,
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
+import { Toaster } from "~/components/ui/toaster";
 
 const languages = ["en", "de"];
 
@@ -41,6 +42,7 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
